@@ -1,0 +1,3 @@
+
+
+void consolaInit(char *pantalla);

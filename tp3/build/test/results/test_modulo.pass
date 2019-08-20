@@ -1,0 +1,17 @@
+---
+:source:
+  :path: test
+  :file: test_modulo.c
+:successes:
+- :test: test_inicializacion
+  :line: 32
+  :message: ''
+:failures: []
+:ignores: []
+:counts:
+  :total: 1
+  :passed: 1
+  :failed: 0
+  :ignored: 0
+:stdout: []
+:time: 0.0009108930003094429
