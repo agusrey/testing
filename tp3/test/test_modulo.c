@@ -29,8 +29,24 @@
 
 #include "moduloConsola.h"
 
+/*
+ * TEST NUMERO 1
+ */
 void test_inicializacion(void) {
-	char pantalla[200]={0};	//simula la pantalla, recibe los bytes que se envían a consola
+	char pantalla[200] = { 0 };	//simula la pantalla, recibe los bytes que se envían a consola
 	consolaInit(pantalla);
 	TEST_ASSERT_EQUAL_STRING("Bienvenido al Control de Motor\r\n", pantalla);
+}
+
+/*
+ * TEST NUMERO 2
+ */
+
+void test_comandoValido(void) {
+	char pantalla[200] = { 0 };
+	char comando[] = "aaa\r\n";
+	int num_comando;
+	num_comando = verificarComando(comando, pantalla);
+	TEST_ASSERT_EQUAL_STRING("Comando Invalido\r\n", pantalla);
+	TEST_ASSERT_EQUAL(num_comando, ERROR);
 }

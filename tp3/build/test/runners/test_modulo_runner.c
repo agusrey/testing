@@ -36,6 +36,7 @@ char* GlobalOrderError;
 extern void setUp(void);
 extern void tearDown(void);
 extern void test_inicializacion(void);
+extern void test_comandoValido(void);
 
 
 /*=======Suite Setup=====*/
@@ -71,6 +72,7 @@ int main(void)
   suite_setup();
   UnityBegin("test_modulo.c");
   RUN_TEST(test_inicializacion, 32);
+  RUN_TEST(test_comandoValido, 38);
 
   return suite_teardown(UnityEnd());
 }
