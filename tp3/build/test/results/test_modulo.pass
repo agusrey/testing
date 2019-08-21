@@ -4,17 +4,23 @@
   :file: test_modulo.c
 :successes:
 - :test: test_inicializacion
-  :line: 32
+  :line: 42
+  :message: ''
+- :test: test_comandoInValido
+  :line: 51
   :message: ''
 - :test: test_comandoValido
-  :line: 38
+  :line: 61
+  :message: ''
+- :test: test_procesarComandoValido
+  :line: 75
   :message: ''
 :failures: []
 :ignores: []
 :counts:
-  :total: 2
-  :passed: 2
+  :total: 4
+  :passed: 4
   :failed: 0
   :ignored: 0
 :stdout: []
-:time: 0.0009644350002417923
+:time: 0.0009393379998527962

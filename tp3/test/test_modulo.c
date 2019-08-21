@@ -28,25 +28,56 @@
  */
 
 #include "moduloConsola.h"
+extern status_t status;
+char pantalla[200] = { 0 };	//simula la pantalla, recibe los bytes que se envían a consola
+
+void SetUp(void) {
+	status.comando = ULTIMO;
+	sprintf(&pantalla[0],"");
+}
 
 /*
  * TEST NUMERO 1
  */
 void test_inicializacion(void) {
-	char pantalla[200] = { 0 };	//simula la pantalla, recibe los bytes que se envían a consola
 	consolaInit(pantalla);
 	TEST_ASSERT_EQUAL_STRING("Bienvenido al Control de Motor\r\n", pantalla);
 }
 
 /*
- * TEST NUMERO 2
+ * TEST NUMERO 2- son dos Pruebas, por válido y por inválido
  */
 
-void test_comandoValido(void) {
-	char pantalla[200] = { 0 };
-	char comando[] = "aaa\r\n";
+void test_comandoInValido(void) {
+
+	char comando[] = "Run\r\n";
 	int num_comando;
 	num_comando = verificarComando(comando, pantalla);
 	TEST_ASSERT_EQUAL_STRING("Comando Invalido\r\n", pantalla);
 	TEST_ASSERT_EQUAL(num_comando, ERROR);
+
 }
+
+void test_comandoValido(void) {
+
+	char comando[] = "run\r\n";
+	int num_comando;
+	sprintf(&pantalla[0],"");
+	num_comando = verificarComando(comando, pantalla);
+	TEST_ASSERT_EQUAL_STRING("", pantalla);
+	TEST_ASSERT_EQUAL(num_comando, 0);
+}
+
+/*
+ * TEST NUMERO 3
+ */
+
+void test_procesarComandoValido(void) {
+
+	char comando[] = "run\r\n";
+	int num_comando;
+	procesarComando(comando, pantalla);
+	TEST_ASSERT_EQUAL_STRING("OK\r\n", pantalla);
+	TEST_ASSERT_EQUAL(status.comando, RUN);
+}
+
