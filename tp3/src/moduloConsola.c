@@ -19,6 +19,8 @@ char mens_comando_invalido[] = "Comando Invalido\r\n";
 char mens_ok[] = "OK\r\n";
 char mens_vmax[] = "Ingrese Vmax =";
 char mens_vmin[] = "Ingrese Vmin =";
+char mens_ramp_up[] = "Ingrese Ramp Up =";
+char mens_ramp_down[] = "Ingrese Ramp Down =";
 
 /*Strings con los Comandos Válidos*/
 
@@ -28,9 +30,12 @@ char comando_stop[] = "stop\r";
 char comando_quit[] = "quit\r";
 char comando_vmax[] = "vmax\r";
 char comando_vmin[] = "vmin\r";
+char comando_ramp_up[] = "ramp up\r";
+char comando_ramp_down[] = "ramp down\r";
 
 char *comandos[NUM_COMANDOS] = { comando_run, comando_slow, comando_stop,
-		comando_quit, comando_vmax, comando_vmin };
+		comando_quit, comando_vmax, comando_vmin, comando_ramp_up,
+		comando_ramp_down };
 
 /*
  * Las siguientes estructuras contienen los valores máximos y mínimos que pueden tomar
@@ -78,6 +83,12 @@ comando_t procesarComando(char*comando, char*pantalla) {
 		case VMIN:
 			sprintf(pantalla, "%s", mens_vmin);
 			break;
+		case RAMP_UP:
+			sprintf(pantalla, "%s", mens_ramp_up);
+			break;
+		case RAMP_DOWN:
+			sprintf(pantalla, "%s", mens_ramp_down);
+			break;
 		default:
 			status.comando = Comando;
 			sprintf(pantalla, "%s", mens_ok);
@@ -115,6 +126,19 @@ int procesarValoresComando(comando_t comando, char *str) {
 				ret = OK;
 			}
 			break;
+		case RAMP_UP:
+			if (controlarValor(RAMP_UP, valor) == OK) {
+				status.vmax = valor;
+				ret = OK;
+			}
+			break;
+
+		case RAMP_DOWN:
+			if (controlarValor(RAMP_DOWN, valor) == OK) {
+				status.vmin = valor;
+				ret = OK;
+			}
+			break;
 
 		default:
 			ret = ERROR;
@@ -142,6 +166,15 @@ int controlarValor(comando_t comando, int valor) {
 		if (valor <= status_max.vmin && valor >= status_min.vmin)
 			ret = OK;
 		break;
+	case RAMP_UP:
+		if (valor <= status_max.ramp_up && valor >= status_min.ramp_up)
+			ret = OK;
+		break;
+	case RAMP_DOWN:
+		if (valor <= status_max.ramp_down && valor >= status_min.ramp_down)
+			ret = OK;
+		break;
+
 	default:
 		break;
 	}

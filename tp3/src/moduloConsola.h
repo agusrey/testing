@@ -2,7 +2,7 @@
 #define ERROR -1
 
 typedef enum {
-	RUN = 0, SLOW, STOP, QUIT, VMAX, VMIN, ERR
+	RUN = 0, SLOW, STOP, QUIT, VMAX, VMIN, RAMP_UP, RAMP_DOWN, ERR
 } comando_t;
 
 #define NUM_COMANDOS ERR

@@ -216,3 +216,79 @@ void test_verificarValores(void) {
 ), (UNITY_UINT)(115), UNITY_DISPLAY_STYLE_INT);
 
 }
+
+
+
+
+
+
+
+
+
+
+
+void test_procesarValores2(void) {
+
+
+
+ char comando[] = "ramp up\r";
+
+ char valor[] = "200\r";
+
+ int retorno;
+
+ comando_t num_comando;
+
+ num_comando = procesarComando(comando, pantalla);
+
+ retorno = procesarValoresComando(num_comando, valor);
+
+ UnityAssertEqualString((const char*)(("Ingrese Ramp Up =")), (const char*)((pantalla)), (
+
+((void *)0)
+
+), (UNITY_UINT)(130));
+
+ if (((retorno) != (-1))) {} else {UnityFail( ((" Expected Not-Equal")), (UNITY_UINT)((UNITY_UINT)(131)));};
+
+ UnityAssertEqualNumber((UNITY_INT)((status.vmin)), (UNITY_INT)((44)), (
+
+((void *)0)
+
+), (UNITY_UINT)(132), UNITY_DISPLAY_STYLE_INT);
+
+
+
+}
+
+
+
+void test_verificarValores2(void) {
+
+
+
+ char comando[] = "ramp down\r";
+
+ char valor[] = "5\r";
+
+ int retorno;
+
+ comando_t num_comando;
+
+ num_comando = procesarComando(comando, pantalla);
+
+ retorno = procesarValoresComando(num_comando, valor);
+
+ UnityAssertEqualString((const char*)(("Ingrese Ramp Down =")), (const char*)((pantalla)), (
+
+((void *)0)
+
+), (UNITY_UINT)(144));
+
+ UnityAssertEqualNumber((UNITY_INT)((retorno)), (UNITY_INT)((-1)), (
+
+((void *)0)
+
+), (UNITY_UINT)(145), UNITY_DISPLAY_STYLE_INT);
+
+}

@@ -115,3 +115,34 @@ void test_verificarValores(void) {
 	TEST_ASSERT_EQUAL(retorno, ERROR);
 }
 
+/*
+ * TEST NUMERO 6 - Repetir 4 y 5 pero con los comandos agregados
+ */
+
+void test_procesarValores2(void) {
+
+	char comando[] = "ramp up\r";
+	char valor[] = "200\r";
+	int retorno;
+	comando_t num_comando;
+	num_comando = procesarComando(comando, pantalla);
+	retorno = procesarValoresComando(num_comando, valor);
+	TEST_ASSERT_EQUAL_STRING("Ingrese Ramp Up =", pantalla);
+	TEST_ASSERT_NOT_EQUAL(retorno, ERROR);
+	TEST_ASSERT_EQUAL(status.vmin, 44);
+
+}
+
+void test_verificarValores2(void) {
+
+	char comando[] = "ramp down\r";
+	char valor[] = "5\r";
+	int retorno;
+	comando_t num_comando;
+	num_comando = procesarComando(comando, pantalla);
+	retorno = procesarValoresComando(num_comando, valor);
+	TEST_ASSERT_EQUAL_STRING("Ingrese Ramp Down =", pantalla);
+	TEST_ASSERT_EQUAL(retorno, ERROR);
+}
+
+

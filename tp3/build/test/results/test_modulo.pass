@@ -21,12 +21,18 @@
 - :test: test_verificarValores
   :line: 106
   :message: ''
+- :test: test_procesarValores2
+  :line: 122
+  :message: ''
+- :test: test_verificarValores2
+  :line: 136
+  :message: ''
 :failures: []
 :ignores: []
 :counts:
-  :total: 6
-  :passed: 6
+  :total: 8
+  :passed: 8
   :failed: 0
   :ignored: 0
 :stdout: []
-:time: 0.0011145930002385285
+:time: 0.001302587999816751
