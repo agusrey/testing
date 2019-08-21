@@ -20,7 +20,6 @@ char mens_ok[] = "OK\r\n";
 char mens_vmax[] = "Ingrese Vmax =";
 char mens_vmin[] = "Ingrese Vmin =";
 
-
 /*Strings con los Comandos Válidos*/
 
 char comando_run[] = "run\r";
@@ -32,6 +31,12 @@ char comando_vmin[] = "vmin\r";
 
 char *comandos[NUM_COMANDOS] = { comando_run, comando_slow, comando_stop,
 		comando_quit, comando_vmax, comando_vmin };
+
+/*
+ * Las siguientes estructuras contienen los valores máximos y mínimos que pueden tomar
+ */
+const status_t status_max = { ERR, 50, 50, 1000, 1000 };
+const status_t status_min = { RUN, 1, 1, 50, 50 };
 
 status_t status;
 
@@ -98,13 +103,17 @@ int procesarValoresComando(comando_t comando, char *str) {
 	if ((valor = atoi(str)) != 0) {
 		switch (comando) {
 		case VMAX:
-			status.vmax = valor;
-			ret = OK;
+			if (controlarValor(VMAX, valor) == OK) {
+				status.vmax = valor;
+				ret = OK;
+			}
 			break;
 
 		case VMIN:
-			status.vmin = valor;
-			ret = OK;
+			if (controlarValor(VMIN, valor) == OK) {
+				status.vmin = valor;
+				ret = OK;
+			}
 			break;
 
 		default:
@@ -114,6 +123,29 @@ int procesarValoresComando(comando_t comando, char *str) {
 	} else {
 		ret = ERROR;
 	}
+	return (ret);
+}
+
+/*
+ * Función auxiliar que controla si el valor está dentro de los límites
+ * retorna error si está fuera de límite o si al ese comando no le corresponde un valor a controlar
+ */
+int controlarValor(comando_t comando, int valor) {
+	int ret = ERROR;
+
+	switch (comando) {
+	case VMAX:
+		if (valor <= status_max.vmax && valor >= status_min.vmax)
+			ret = OK;
+		break;
+	case VMIN:
+		if (valor <= status_max.vmin && valor >= status_min.vmin)
+			ret = OK;
+		break;
+	default:
+		break;
+	}
+
 	return (ret);
 }
 

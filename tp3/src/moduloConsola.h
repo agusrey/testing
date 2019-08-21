@@ -20,3 +20,4 @@ void consolaInit(char *pantalla);
 comando_t verificarComando(char *comando, char *pantalla);
 comando_t procesarComando(char *comando, char *pantalla);
 int procesarValoresComando(comando_t comando, char *str);
+int controlarValor(comando_t comando, int valor);

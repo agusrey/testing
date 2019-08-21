@@ -176,3 +176,43 @@ void test_procesarValores(void) {
 
 
 }
+
+
+
+
+
+
+
+
+
+
+
+void test_verificarValores(void) {
+
+
+
+ char comando[] = "vmax\r";
+
+ char valor[] = "55\r";
+
+ int retorno;
+
+ comando_t num_comando;
+
+ num_comando = procesarComando(comando, pantalla);
+
+ retorno = procesarValoresComando(num_comando, valor);
+
+ UnityAssertEqualString((const char*)(("Ingrese Vmax =")), (const char*)((pantalla)), (
+
+((void *)0)
+
+), (UNITY_UINT)(114));
+
+ UnityAssertEqualNumber((UNITY_INT)((retorno)), (UNITY_INT)((-1)), (
+
+((void *)0)
+
+), (UNITY_UINT)(115), UNITY_DISPLAY_STYLE_INT);
+
+}

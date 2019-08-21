@@ -37,7 +37,7 @@ void SetUp(void) {
 }
 
 /*
- * TEST NUMERO 1
+ * TEST NUMERO 1 - mensaje de bienvenida
  */
 void test_inicializacion(void) {
 	consolaInit(pantalla);
@@ -45,7 +45,7 @@ void test_inicializacion(void) {
 }
 
 /*
- * TEST NUMERO 2- son dos Pruebas, por válido y por inválido
+ * TEST NUMERO 2- Puse dos Pruebas, por comando válido e  inválido
  */
 
 void test_comandoInValido(void) {
@@ -69,7 +69,7 @@ void test_comandoValido(void) {
 }
 
 /*
- * TEST NUMERO 3
+ * TEST NUMERO 3 - Cargar estructura e informar OK
  */
 
 void test_procesarComandoValido(void) {
@@ -82,7 +82,7 @@ void test_procesarComandoValido(void) {
 }
 
 /*
- * TEST NUMERO 4
+ * TEST NUMERO 4 - Toma valores para comandos nuevos
  */
 
 void test_procesarValores(void) {
@@ -97,5 +97,21 @@ void test_procesarValores(void) {
 	TEST_ASSERT_NOT_EQUAL(retorno, ERROR);
 	TEST_ASSERT_EQUAL(status.vmin, 44);
 
+}
+
+/*
+ * TEST NUMERO 5 - Verificar que los valores están en rango antes de cargarlos
+ */
+
+void test_verificarValores(void) {
+
+	char comando[] = "vmax\r";
+	char valor[] = "55\r";
+	int retorno;
+	comando_t num_comando;
+	num_comando = procesarComando(comando, pantalla);
+	retorno = procesarValoresComando(num_comando, valor);
+	TEST_ASSERT_EQUAL_STRING("Ingrese Vmax =", pantalla);
+	TEST_ASSERT_EQUAL(retorno, ERROR);
 }
 

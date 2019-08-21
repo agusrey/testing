@@ -18,14 +18,15 @@
 - :test: test_procesarValores
   :line: 88
   :message: ''
+- :test: test_verificarValores
+  :line: 106
+  :message: ''
 :failures: []
 :ignores: []
 :counts:
-  :total: 5
-  :passed: 5
+  :total: 6
+  :passed: 6
   :failed: 0
   :ignored: 0
-:stdout:
-- str= 44
-- valor= 44
-:time: 0.00157543699992857
+:stdout: []
+:time: 0.0011145930002385285
