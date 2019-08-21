@@ -20,11 +20,6 @@
  *
  *7) Al recibir el comando quit da un mensaje de despedida.
  *
- *8) Como respuesta a cada comando, se informará por consola el status del sistema
- *
- *9) Al inicializar, se cargará en la estructura status los valores por default y se informarán por consola
- *
- *
  */
 
 #include "moduloConsola.h"
