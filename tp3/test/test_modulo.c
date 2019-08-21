@@ -145,4 +145,17 @@ void test_verificarValores2(void) {
 	TEST_ASSERT_EQUAL(retorno, ERROR);
 }
 
+/*
+ * TEST NUMERO 7 - Mensaje despedida y comando quit
+ */
 
+
+void test_comandoQuit(void) {
+
+	char comando[] = "quit\r";
+	int num_comando;
+	sprintf(&pantalla[0], " ");
+	procesarComando(comando, pantalla);
+	TEST_ASSERT_EQUAL_STRING("Hasta pronto - Apagando el Motor\r\n", pantalla);//verifica que no se escribió nada en pantalla
+	TEST_ASSERT_EQUAL(status.comando, QUIT);
+}

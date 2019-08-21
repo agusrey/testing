@@ -21,6 +21,7 @@ char mens_vmax[] = "Ingrese Vmax =";
 char mens_vmin[] = "Ingrese Vmin =";
 char mens_ramp_up[] = "Ingrese Ramp Up =";
 char mens_ramp_down[] = "Ingrese Ramp Down =";
+char mens_despedida[] = "Hasta pronto - Apagando el Motor\r\n";
 
 /*Strings con los Comandos Válidos*/
 
@@ -88,6 +89,10 @@ comando_t procesarComando(char*comando, char*pantalla) {
 			break;
 		case RAMP_DOWN:
 			sprintf(pantalla, "%s", mens_ramp_down);
+			break;
+		case QUIT:
+			status.comando = Comando;
+			sprintf(pantalla, "%s", mens_despedida);
 			break;
 		default:
 			status.comando = Comando;

@@ -292,3 +292,41 @@ void test_verificarValores2(void) {
 ), (UNITY_UINT)(145), UNITY_DISPLAY_STYLE_INT);
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+void test_comandoQuit(void) {
+
+
+
+ char comando[] = "quit\r";
+
+ int num_comando;
+
+ sprintf(&pantalla[0], " ");
+
+ procesarComando(comando, pantalla);
+
+ UnityAssertEqualString((const char*)(("Hasta pronto - Apagando el Motor\r\n")), (const char*)((pantalla)), (
+
+((void *)0)
+
+), (UNITY_UINT)(159));
+
+ UnityAssertEqualNumber((UNITY_INT)((status.comando)), (UNITY_INT)((QUIT)), (
+
+((void *)0)
+
+), (UNITY_UINT)(160), UNITY_DISPLAY_STYLE_INT);
+
+}

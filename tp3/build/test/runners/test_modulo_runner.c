@@ -43,6 +43,7 @@ extern void test_procesarValores(void);
 extern void test_verificarValores(void);
 extern void test_procesarValores2(void);
 extern void test_verificarValores2(void);
+extern void test_comandoQuit(void);
 
 
 /*=======Suite Setup=====*/
@@ -85,6 +86,7 @@ int main(void)
   RUN_TEST(test_verificarValores, 106);
   RUN_TEST(test_procesarValores2, 122);
   RUN_TEST(test_verificarValores2, 136);
+  RUN_TEST(test_comandoQuit, 153);
 
   return suite_teardown(UnityEnd());
 }
