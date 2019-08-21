@@ -32,8 +32,8 @@ extern status_t status;
 char pantalla[200] = { 0 };	//simula la pantalla, recibe los bytes que se envían a consola
 
 void SetUp(void) {
-	status.comando = ULTIMO;
-	sprintf(&pantalla[0],"");
+	status.comando = ERR;
+	sprintf(&pantalla[0], " ");
 }
 
 /*
@@ -50,7 +50,7 @@ void test_inicializacion(void) {
 
 void test_comandoInValido(void) {
 
-	char comando[] = "Run\r\n";
+	char comando[] = "Run\r";
 	int num_comando;
 	num_comando = verificarComando(comando, pantalla);
 	TEST_ASSERT_EQUAL_STRING("Comando Invalido\r\n", pantalla);
@@ -60,11 +60,11 @@ void test_comandoInValido(void) {
 
 void test_comandoValido(void) {
 
-	char comando[] = "run\r\n";
+	char comando[] = "run\r";
 	int num_comando;
-	sprintf(&pantalla[0],"");
+	sprintf(&pantalla[0], " ");
 	num_comando = verificarComando(comando, pantalla);
-	TEST_ASSERT_EQUAL_STRING("", pantalla);
+	TEST_ASSERT_EQUAL_STRING(" ", pantalla);//verifica que no se escribió nada en pantalla
 	TEST_ASSERT_EQUAL(num_comando, 0);
 }
 
@@ -74,10 +74,28 @@ void test_comandoValido(void) {
 
 void test_procesarComandoValido(void) {
 
-	char comando[] = "run\r\n";
+	char comando[] = "run\r";
 	int num_comando;
 	procesarComando(comando, pantalla);
 	TEST_ASSERT_EQUAL_STRING("OK\r\n", pantalla);
 	TEST_ASSERT_EQUAL(status.comando, RUN);
+}
+
+/*
+ * TEST NUMERO 4
+ */
+
+void test_procesarValores(void) {
+
+	char comando[] = "vmin\r";
+	char valor[] = "44\r";
+	int retorno;
+	comando_t num_comando;
+	num_comando = procesarComando(comando, pantalla);
+	retorno = procesarValoresComando(num_comando, valor);
+	TEST_ASSERT_EQUAL_STRING("Ingrese Vmin =", pantalla);
+	TEST_ASSERT_NOT_EQUAL(retorno, ERROR);
+	TEST_ASSERT_EQUAL(status.vmin, 44);
+
 }
 

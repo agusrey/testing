@@ -39,6 +39,7 @@ extern void test_inicializacion(void);
 extern void test_comandoInValido(void);
 extern void test_comandoValido(void);
 extern void test_procesarComandoValido(void);
+extern void test_procesarValores(void);
 
 
 /*=======Suite Setup=====*/
@@ -77,6 +78,7 @@ int main(void)
   RUN_TEST(test_comandoInValido, 51);
   RUN_TEST(test_comandoValido, 61);
   RUN_TEST(test_procesarComandoValido, 75);
+  RUN_TEST(test_procesarValores, 88);
 
   return suite_teardown(UnityEnd());
 }

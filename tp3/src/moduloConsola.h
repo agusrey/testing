@@ -2,8 +2,10 @@
 #define ERROR -1
 
 typedef enum {
-	RUN = 0, SLOW, STOP, QUIT, ULTIMO
+	RUN = 0, SLOW, STOP, QUIT, VMAX, VMIN, ERR
 } comando_t;
+
+#define NUM_COMANDOS ERR
 
 typedef struct{
 	comando_t comando;		//comando
@@ -15,5 +17,6 @@ typedef struct{
 
 
 void consolaInit(char *pantalla);
-int verificarComando(char *comando, char *pantalla);
-void procesarComando(char*comando, char*pantalla);
+comando_t verificarComando(char *comando, char *pantalla);
+comando_t procesarComando(char *comando, char *pantalla);
+int procesarValoresComando(comando_t comando, char *str);

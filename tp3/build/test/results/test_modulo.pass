@@ -15,12 +15,17 @@
 - :test: test_procesarComandoValido
   :line: 75
   :message: ''
+- :test: test_procesarValores
+  :line: 88
+  :message: ''
 :failures: []
 :ignores: []
 :counts:
-  :total: 4
-  :passed: 4
+  :total: 5
+  :passed: 5
   :failed: 0
   :ignored: 0
-:stdout: []
-:time: 0.0009393379998527962
+:stdout:
+- str= 44
+- valor= 44
+:time: 0.00157543699992857

@@ -9,9 +9,9 @@ char pantalla[200] = { 0 };
 
 void SetUp(void) {
 
- status.comando = ULTIMO;
+ status.comando = ERR;
 
- sprintf(&pantalla[0],"");
+ sprintf(&pantalla[0], " ");
 
 }
 
@@ -49,7 +49,7 @@ void test_comandoInValido(void) {
 
 
 
- char comando[] = "Run\r\n";
+ char comando[] = "Run\r";
 
  int num_comando;
 
@@ -77,15 +77,15 @@ void test_comandoValido(void) {
 
 
 
- char comando[] = "run\r\n";
+ char comando[] = "run\r";
 
  int num_comando;
 
- sprintf(&pantalla[0],"");
+ sprintf(&pantalla[0], " ");
 
  num_comando = verificarComando(comando, pantalla);
 
- UnityAssertEqualString((const char*)(("")), (const char*)((pantalla)), (
+ UnityAssertEqualString((const char*)((" ")), (const char*)((pantalla)), (
 
 ((void *)0)
 
@@ -113,7 +113,7 @@ void test_procesarComandoValido(void) {
 
 
 
- char comando[] = "run\r\n";
+ char comando[] = "run\r";
 
  int num_comando;
 
@@ -130,5 +130,49 @@ void test_procesarComandoValido(void) {
 ((void *)0)
 
 ), (UNITY_UINT)(81), UNITY_DISPLAY_STYLE_INT);
+
+}
+
+
+
+
+
+
+
+
+
+
+
+void test_procesarValores(void) {
+
+
+
+ char comando[] = "vmin\r";
+
+ char valor[] = "44\r";
+
+ int retorno;
+
+ comando_t num_comando;
+
+ num_comando = procesarComando(comando, pantalla);
+
+ retorno = procesarValoresComando(num_comando, valor);
+
+ UnityAssertEqualString((const char*)(("Ingrese Vmin =")), (const char*)((pantalla)), (
+
+((void *)0)
+
+), (UNITY_UINT)(96));
+
+ if (((retorno) != (-1))) {} else {UnityFail( ((" Expected Not-Equal")), (UNITY_UINT)((UNITY_UINT)(97)));};
+
+ UnityAssertEqualNumber((UNITY_INT)((status.vmin)), (UNITY_INT)((44)), (
+
+((void *)0)
+
+), (UNITY_UINT)(98), UNITY_DISPLAY_STYLE_INT);
+
+
 
 }
